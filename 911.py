@@ -80,7 +80,21 @@ def calls_911():
     # so that the columns become the Hours and the Index becomes the Day of the Week. There are lots of ways to do
     # this, but I would recommend trying to combine groupby with an unstack method. Reference the solutions if you
     # get stuck on this!
-
+    dayHour = df.groupby(by=['Day of Week', 'Hour']).count()['Reason'].unstack()
+    print(dayHour.head())
+    # Now create a HeatMap using this new DataFrame
+    sns.heatmap(dayHour, cmap='viridis')
+    plt.show()
+    # Now create a clustermap using this DataFrame.
+    sns.clustermap(dayHour, cmap='viridis')
+    plt.show()
+    dayMonth = df.groupby(by=['Day of Week', 'Month']).count()['Reason'].unstack()
+    print(dayHour.head())
+    sns.heatmap(dayMonth, cmap='viridis')
+    plt.show()
+    # Now create a clustermap using this DataFrame.
+    sns.clustermap(dayMonth, cmap='viridis')
+    plt.show()
 
 
 if __name__ == '__main__':
